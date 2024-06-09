@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Quiz</title>
+    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'main/images/logo.ico' %}">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="{% static 'main/images/logo.png' %}" alt="Logo">
+            <a class="mytitle" style="text-decoration: none;" href="{% url 'home' %}">Садыев Академия ИТ</a>
+        </div>
+        <div class="menu">
+            <a href="{% url 'home' %}">Главная</a>
+            <a href="{% url 'article_list' %}">Статьи</a>
+            <a href="{% url 'about' %}">Автор</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'quiz_list' %}">Проверка знаний</a>
+                <a href="{% url 'profile' %}">Личный кабинет</a>
+                <a href="{% url 'logout' %}">Выйти</a>
+            {% else %}
+                <a href="{% url 'login' %}">Войти</a>
+                <a href="{% url 'register' %}">Регистрация</a>
+            {% endif %}
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Knowledge Quiz</h1>
+        <p>Select a quiz to test your knowledge based on our articles.</p>
+        <!-- Пример теста -->
+        <form>
+            <h2>Sample Quiz</h2>
+            <p>Question 1: What is Django?</p>
+            <input type="radio" name="q1" value="A"> A Python web framework<br>
+            <input type="radio" name="q1" value="B"> A JavaScript library<br>
+            <input type="radio" name="q1" value="C"> A CSS framework<br>
+            <input type="radio" name="q1" value="D"> A database<br>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <footer>
+        Создано для ППК им. Н.Г. Славянова студентом Садыевым Данилом группы СА-20
+    </footer>
+</body>
+</html>
